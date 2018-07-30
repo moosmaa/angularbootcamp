@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-content">
+    <div class="card-title">Financial Report</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Units Sold (millions)</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let record of records; even as shouldStripe" 
+          [class.stripe]="shouldStripe"
+        > <!-- this is just a css table attribute that stripes even rows -->
+         <td>{{record.empName}}</td>
+         <td>
+           <!-- Inline styling is usually frowned upon. But when you use it with angular for dynamic styling, its appropriate. -->
+           <div class="bar" [ngClass]="status(record.rank)" [style.width.px]="record.units * unitsScale"></div>
+         </td>
+         <td>
+           <div class="bar" [ngClass]="status(record.rank)" [style.width.px]="record.totalRevenue * revenueScale"></div>
+         </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
